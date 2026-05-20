@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Montserrat, Cairo } from "next/font/google";
+import { Montserrat, Cairo, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import CustomCursor from "@/components/CustomCursor";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -18,6 +19,13 @@ const cairo = Cairo({
   weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  subsets: ["latin"],
+  weight: ["300", "400", "600", "700"],
+  style: ["normal", "italic"],
+});
+
 export const metadata: Metadata = {
   title: "Al Nakheel Village | قرية النخيل — Al Khobar, Saudi Arabia",
   description:
@@ -27,7 +35,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Al Nakheel Village | قرية النخيل",
     description:
-      "A Life of Curated Elegance — Al Khobar's premier gated residential community.",
+      "Everything You Need. One Address. — Al Khobar's premier gated residential community.",
     siteName: "Al Nakheel Village",
   },
 };
@@ -41,10 +49,11 @@ export default function RootLayout({
     <html
       lang="en"
       dir="ltr"
-      className={`${montserrat.variable} ${cairo.variable}`}
+      className={`${montserrat.variable} ${cairo.variable} ${cormorant.variable}`}
     >
       <body className="min-h-screen flex flex-col antialiased">
         <LanguageProvider>
+          <CustomCursor />
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />
